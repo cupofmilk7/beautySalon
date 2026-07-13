@@ -1,4 +1,4 @@
-package ru.cupofmilk.dto;
+package ru.cupofmilk.dto.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

@@ -3,7 +3,7 @@ package ru.cupofmilk.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.cupofmilk.dto.UserDto;
+import ru.cupofmilk.dto.user.UserDto;
 import ru.cupofmilk.service.UserService;
 
 import java.util.List;

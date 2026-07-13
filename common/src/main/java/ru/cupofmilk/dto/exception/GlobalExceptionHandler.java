@@ -1,4 +1,4 @@
-package ru.cupofmilk.exception;
+package ru.cupofmilk.dto.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

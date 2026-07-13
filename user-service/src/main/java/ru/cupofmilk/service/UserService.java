@@ -1,7 +1,7 @@
 package ru.cupofmilk.service;
 
 import org.springframework.stereotype.Service;
-import ru.cupofmilk.dto.UserDto;
+import ru.cupofmilk.dto.user.UserDto;
 
 import java.util.List;
 
