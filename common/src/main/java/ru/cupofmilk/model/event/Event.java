@@ -1,4 +1,4 @@
-package ru.cupofmilk.model;
+package ru.cupofmilk.model.event;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

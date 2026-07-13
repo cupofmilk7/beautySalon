@@ -1,6 +1,6 @@
 package ru.cupofmilk.mapper;
 
-import ru.cupofmilk.model.Event;
+import ru.cupofmilk.model.event.Event;
 import ru.cupofmilk.dto.event.EventDto;
 
 public class EventMapper {

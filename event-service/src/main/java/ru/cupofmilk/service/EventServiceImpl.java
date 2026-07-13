@@ -1,7 +1,7 @@
 package ru.cupofmilk.service;
 
 import ru.cupofmilk.mapper.EventMapper;
-import ru.cupofmilk.model.Event;
+import ru.cupofmilk.model.event.Event;
 import ru.cupofmilk.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

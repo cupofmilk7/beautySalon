@@ -12,6 +12,7 @@
         <module>user-service</module>
         <module>event-service</module>
         <module>common</module>
+        <module>admin-service</module>
     </modules>
 
     <properties>

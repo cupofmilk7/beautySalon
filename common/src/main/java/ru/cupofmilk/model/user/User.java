@@ -1,4 +1,4 @@
-package ru.cupofmilk.model;
+package ru.cupofmilk.model.user;
 
 import jakarta.persistence.*;
 import lombok.Data;

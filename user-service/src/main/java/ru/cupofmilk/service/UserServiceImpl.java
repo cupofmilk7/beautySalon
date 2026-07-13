@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.cupofmilk.dto.user.UserDto;
 import ru.cupofmilk.dto.exception.NotFoundException;
 import ru.cupofmilk.mapper.UserMapper;
-import ru.cupofmilk.model.User;
+import ru.cupofmilk.model.user.User;
 import ru.cupofmilk.repository.UserRepository;
 
 import java.util.List;

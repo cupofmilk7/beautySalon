@@ -1,7 +1,7 @@
 package ru.cupofmilk.mapper;
 
 import ru.cupofmilk.dto.user.UserDto;
-import ru.cupofmilk.model.User;
+import ru.cupofmilk.model.user.User;
 
 public class UserMapper {
     public static UserDto toDto(User user) {
