@@ -5,38 +5,27 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import tech.ailef.snapadmin.external.annotations.Filterable;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "events")
+@Table(name = "filters")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Event {
-
+public class Filter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "BIGINT")
-    @Filterable
     private Long id;
 
-    @Column(nullable = false, length = 1000)
-    private String description;
+    @Column(name = "filter_name",nullable = false)
+    private String name;
 
     @Column(name = "first_date")
-    @Filterable
     private LocalDateTime firstDate;
 
     @Column(name = "second_date")
     private LocalDateTime secondDate;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "filter_id")
-    private Filter filter;
-
-    @Column(name = "message_date")
-    private LocalDateTime messageDate;
 }

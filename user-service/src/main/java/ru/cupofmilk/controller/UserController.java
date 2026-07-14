@@ -2,6 +2,8 @@ package ru.cupofmilk.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.cupofmilk.dto.user.UserDto;
 import ru.cupofmilk.service.UserService;
@@ -15,36 +17,42 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public UserDto createUser(@Valid @RequestBody UserDto userDto) {
-        return userService.createUser(userDto);
+    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
+        UserDto created = userService.createUser(userDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
     @GetMapping("/{userId}")
-    public UserDto getUser(@PathVariable(name = "userId") long userId) {
-        return userService.getUser(userId);
+    public ResponseEntity<UserDto> getUser(@PathVariable(name = "userId") long userId) {
+        UserDto user = userService.getUser(userId);
+        return ResponseEntity.ok(user);
     }
 
     @GetMapping("/email/{userEmail}")
-    public UserDto getUserByEmail(@PathVariable(name = "userEmail") String userEmail) {
-        return userService.getUserByEmail(userEmail);
+    public ResponseEntity<UserDto> getUserByEmail(@PathVariable(name = "userEmail") String userEmail) {
+        UserDto user = userService.getUserByEmail(userEmail);
+        return ResponseEntity.ok(user);
     }
 
     @GetMapping
-    public List<UserDto> getUsers(
+    public ResponseEntity<List<UserDto>> getUsers(
             @RequestParam(name = "yearOfBirthMin", required = false, defaultValue = "1900") int yearOfBirthMin,
             @RequestParam(name = "yearOfBirthMax", required = false, defaultValue = "2100") int yearOfBirthMax) {
-        return userService.getUsers(yearOfBirthMin, yearOfBirthMax);
+        List<UserDto> users = userService.getUsers(yearOfBirthMin, yearOfBirthMax);
+        return ResponseEntity.ok(users);
     }
 
     @PutMapping("/{userId}")
-    public UserDto updateUser(
+    public ResponseEntity<UserDto> updateUser(
             @PathVariable(name = "userId") long userId,
             @Valid @RequestBody UserDto userDto) {
-        return userService.updateUser(userId, userDto);
+        UserDto updated = userService.updateUser(userId, userDto);
+        return ResponseEntity.ok(updated);
     }
 
     @DeleteMapping("/{userId}")
-    public boolean deleteUser(@PathVariable(name = "userId") long userId) {
-        return userService.deleteUser(userId);
+    public ResponseEntity<Void> deleteUser(@PathVariable(name = "userId") long userId) {
+        userService.deleteUser(userId);
+        return ResponseEntity.noContent().build();
     }
 }

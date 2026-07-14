@@ -10,6 +10,7 @@ public class EventMapper {
         eventDto.setDescription(event.getDescription());
         eventDto.setFirstDate(event.getFirstDate());
         eventDto.setSecondDate(event.getSecondDate());
+        eventDto.setFilter(event.getFilter());
         eventDto.setMessageDate(event.getMessageDate());
         return eventDto;
     }
@@ -20,6 +21,7 @@ public class EventMapper {
         event.setDescription(eventDto.getDescription());
         event.setFirstDate(eventDto.getFirstDate());
         event.setSecondDate(eventDto.getSecondDate());
+        event.setFilter(eventDto.getFilter());
         event.setMessageDate(eventDto.getMessageDate());
         return event;
     }

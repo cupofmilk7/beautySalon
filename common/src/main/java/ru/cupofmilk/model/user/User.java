@@ -2,6 +2,7 @@ package ru.cupofmilk.model.user;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import tech.ailef.snapadmin.external.annotations.Filterable;
 
 import java.time.LocalDate;
 
@@ -12,9 +13,12 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "BIGINT")
+    @Filterable
     private Long id;
 
     @Column(nullable = false)
+    @Filterable
     private String name;
 
     @Column(nullable = false)

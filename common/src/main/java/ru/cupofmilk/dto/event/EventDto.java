@@ -2,6 +2,7 @@ package ru.cupofmilk.dto.event;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import ru.cupofmilk.model.event.Filter;
 
 import java.time.LocalDateTime;
 
@@ -16,6 +17,8 @@ public class EventDto {
     private LocalDateTime firstDate;
 
     private LocalDateTime secondDate;
+
+    private Filter filter;
 
     private LocalDateTime messageDate;
 }

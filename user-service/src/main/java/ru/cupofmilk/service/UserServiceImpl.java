@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.cupofmilk.dto.user.UserDto;
-import ru.cupofmilk.dto.exception.NotFoundException;
+import ru.cupofmilk.exception.NotFoundException;
 import ru.cupofmilk.mapper.UserMapper;
 import ru.cupofmilk.model.user.User;
 import ru.cupofmilk.repository.UserRepository;

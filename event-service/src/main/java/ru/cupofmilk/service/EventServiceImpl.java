@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.cupofmilk.dto.event.EventDto;
-import ru.cupofmilk.dto.exception.NotFoundException;
+import ru.cupofmilk.exception.NotFoundException;
 
 import java.time.LocalDateTime;
 import java.util.List;
