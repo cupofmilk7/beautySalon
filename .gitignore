@@ -37,3 +37,19 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+# Секреты и конфигурации
+*.env
+*.secrets.yml
+*.secrets.properties
+application-secrets.yml
+application-secrets.properties
+!application-secrets.example.yml
+!application-secrets.example.properties
+config/
+*.local.yml
+*.local.properties
+
+# Игнорируем конкретный файл
+enviroment.env
+!enviroment.example.env

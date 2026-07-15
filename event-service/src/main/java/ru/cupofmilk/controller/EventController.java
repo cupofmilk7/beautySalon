@@ -64,7 +64,7 @@ public class EventController {
         return ResponseEntity.ok(updated);
     }
 
-    @PostMapping
+    @PostMapping("/send-sms")
     public ResponseEntity<RequestDto> createRequest(@Valid @RequestBody RequestDto requestDto) {
         RequestDto created = requestService.createRequest(requestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);

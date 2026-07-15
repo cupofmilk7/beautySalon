@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.cupofmilk.dto.user.UserDto;
+import ru.cupofmilk.feign.UserClient;
 import ru.cupofmilk.service.UserService;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/users")
-public class UserController {
+public class UserController implements UserClient {
     private final UserService userService;
 
     @PostMapping
