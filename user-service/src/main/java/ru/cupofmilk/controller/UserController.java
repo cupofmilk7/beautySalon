@@ -35,6 +35,7 @@ public class UserController implements UserClient {
         return ResponseEntity.ok(user);
     }
 
+    @Override
     @GetMapping
     public ResponseEntity<List<UserDto>> getUsers(
             @RequestParam(name = "yearOfBirthMin", required = false, defaultValue = "1900") int yearOfBirthMin,
