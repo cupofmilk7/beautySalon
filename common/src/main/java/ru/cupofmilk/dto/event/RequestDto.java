@@ -11,5 +11,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class RequestDto {
     private EventDto event;
+    private Long eventId;
     private boolean isNow;
 }

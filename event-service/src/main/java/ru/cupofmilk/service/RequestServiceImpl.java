@@ -10,10 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import ru.cupofmilk.config.SmsConfig;
+import ru.cupofmilk.dto.event.EventDto;
 import ru.cupofmilk.dto.event.RequestDto;
 import ru.cupofmilk.dto.user.UserDto;
+import ru.cupofmilk.exception.NotFoundException;
+import ru.cupofmilk.feign.EventClient;
 import ru.cupofmilk.feign.UserClient;
-import ru.cupofmilk.mapper.RequestMapper;
 import ru.cupofmilk.model.event.Event;
 import ru.cupofmilk.model.event.Filter;
 import ru.cupofmilk.model.event.Request;
@@ -34,6 +36,7 @@ public class RequestServiceImpl implements RequestService {
     private final SmsConfig smsConfig;
     private final RestTemplate restTemplate = new RestTemplate();
     private final UserClient userClient;
+    private final EventClient eventClient;
 
     @PostConstruct
     public void init() {
@@ -46,9 +49,31 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public RequestDto createRequest(RequestDto request) {
         try {
-            validateRequest(RequestMapper.toModel(request));
+            EventDto eventDto;
+            Filter filter;
 
-            Filter filter = request.getEvent().getFilter();
+            if (request.getEventId() != null) {
+                ResponseEntity<EventDto> eventResponse = eventClient.getEvent(request.getEventId());
+                eventDto = eventResponse.getBody();
+
+                if (eventDto == null) {
+                    throw new NotFoundException("Event not found with id: " + request.getEventId());
+                }
+
+                filter = eventDto.getFilter();
+                if (filter == null) {
+                    throw new NotFoundException("Filter not found for event: " + request.getEventId());
+                }
+            } else if (request.getEvent() != null) {
+                eventDto = request.getEvent();
+                filter = eventDto.getFilter();
+            } else {
+                throw new IllegalArgumentException("Either eventId or event must be provided");
+            }
+
+            if (eventDto.getDescription() == null || eventDto.getDescription().isEmpty()) {
+                throw new IllegalArgumentException("Сообщение не может быть пустым");
+            }
 
             List<UserDto> users = userClient.getUsers(
                     filter.getFirstDate().getYear(),
@@ -60,10 +85,11 @@ public class RequestServiceImpl implements RequestService {
                 return request;
             }
 
+            String description = eventDto.getDescription();
             for (UserDto user : users) {
                 SmsRequest smsRequest = new SmsRequest(
                         user.getNumber(),
-                        request.getEvent().getDescription(),
+                        description,
                         smsConfig.getSign()
                 );
 

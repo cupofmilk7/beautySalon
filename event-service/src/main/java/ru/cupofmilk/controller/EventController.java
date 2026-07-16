@@ -1,6 +1,7 @@
 package ru.cupofmilk.controller;
 
 import ru.cupofmilk.dto.event.RequestDto;
+import ru.cupofmilk.feign.EventClient;
 import ru.cupofmilk.service.EventService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/events")
-public class EventController {
+public class EventController implements EventClient {
     private final EventService eventService;
     private final RequestService requestService;
 
@@ -27,6 +28,7 @@ public class EventController {
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
+    @Override
     @GetMapping("/{eventId}")
     public ResponseEntity<EventDto> getEvent(@PathVariable(name = "eventId") long eventId) {
         EventDto event = eventService.getEvent(eventId);
